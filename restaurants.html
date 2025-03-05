@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Restaurant Booking</title>
+    <link rel="stylesheet" href="restaurants-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<!--header start -->
+<header><div class="container">
+    <nav>
+    <div class="logo">
+    <img src="travel-icon.png" alt="" />
+    </div>
+    <ul>
+        <div class="btn">
+            <i class="fas fa-times close-btn"></i>
+        </div>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="flight.html">Flights</a></li>
+        <li><a href="restaurants.html">Restaurants</a></li>
+        <li><a href="weather.html">Weather</a></li>
+        <li><a href="survice.html">Services</a></li>
+    
+    </ul>
+    <div class="btn">
+        <i class="fas fa-bars menu-btn"></i>
+    </div>
+    </nav> 
+    </div>
+    </header>
+    <!-- header end -->
+    
+
+    <section class="hero">
+        <div class="container">
+            <h2>Discover Amazing Restaurants</h2>
+            <p>Find and book the best dining experiences around the world</p>
+        </div>
+    </section>
+
+    <section class="search-section">
+        <div class="container">
+            <div class="search-container">
+                <div class="search-form">
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <input type="text" id="location" placeholder="City, Address or Point of Interest">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="date">Date</label>
+                        <input type="date" id="date">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="time">Time</label>
+                        <input type="time" id="time">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="party-size">Party Size</label>
+                        <select id="party-size">
+                            <option value="1">1 Person</option>
+                            <option value="2" selected>2 People</option>
+                            <option value="3">3 People</option>
+                            <option value="4">4 People</option>
+                            <option value="5">5 People</option>
+                            <option value="6">6 People</option>
+                            <option value="7">7 People</option>
+                            <option value="8">8 People</option>
+                            <option value="9">9 People</option>
+                            <option value="10">10 People</option>
+                            <option value="11">11 People</option>
+                            <option value="12">12 People</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button id="search-restaurants" class="btn-primary">Search Restaurants</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="loading-section" id="loading-section">
+        <div class="container">
+            <div class="loader"></div>
+            <p>Searching for the best restaurants...</p>
+        </div>
+    </section>
+
+    <section class="results-section" id="results-section">
+        <div class="container">
+            <div class="filters">
+                <h3>Filter Results</h3>
+                <div class="filter-group">
+                    <h4>Price Range</h4>
+                    <div class="checkbox-list">
+                        <label><input type="checkbox" value="$" checked> $ (Inexpensive)</label>
+                        <label><input type="checkbox" value="$$" checked> $$ (Moderate)</label>
+                        <label><input type="checkbox" value="$$$" checked> $$$ (Expensive)</label>
+                        <label><input type="checkbox" value="$$$$" checked> $$$$ (Very Expensive)</label>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <h4>Cuisine</h4>
+                    <div class="checkbox-list" id="cuisine-list">
+                        <!-- Cuisines will be populated dynamically -->
+                        <label><input type="checkbox" value="italian" checked> Italian</label>
+                        <label><input type="checkbox" value="american" checked> American</label>
+                        <label><input type="checkbox" value="mexican" checked> Mexican</label>
+                        <label><input type="checkbox" value="chinese" checked> Chinese</label>
+                        <label><input type="checkbox" value="japanese" checked> Japanese</label>
+                        <label><input type="checkbox" value="indian" checked> Indian</label>
+                        <label><input type="checkbox" value="french" checked> French</label>
+                        <label><input type="checkbox" value="thai" checked> Thai</label>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <h4>Rating</h4>
+                    <div class="checkbox-list">
+                        <label><input type="checkbox" value="5" checked> 5 Stars</label>
+                        <label><input type="checkbox" value="4" checked> 4+ Stars</label>
+                        <label><input type="checkbox" value="3" checked> 3+ Stars</label>
+                        <label><input type="checkbox" value="2" checked> 2+ Stars</label>
+                        <label><input type="checkbox" value="1" checked> 1+ Star</label>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <h4>Features</h4>
+                    <div class="checkbox-list">
+                        <label><input type="checkbox" value="outdoor" checked> Outdoor Seating</label>
+                        <label><input type="checkbox" value="delivery" checked> Delivery</label>
+                        <label><input type="checkbox" value="takeout" checked> Takeout</label>
+                        <label><input type="checkbox" value="reservations" checked> Reservations</label>
+                        <label><input type="checkbox" value="wheelchair" checked> Wheelchair Accessible</label>
+                        <label><input type="checkbox" value="parking" checked> Parking</label>
+                        <label><input type="checkbox" value="wifi" checked> Free WiFi</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="results-list" id="results-list">
+                <!-- Restaurant results will be populated dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <section class="restaurant-details-section" id="restaurant-details-section">
+        <div class="container">
+            <div class="restaurant-details-header">
+                <button class="btn-secondary" id="back-to-results"><i class="fas fa-arrow-left"></i> Back to Results</button>
+            </div>
+            
+            <div class="restaurant-details" id="restaurant-details">
+                <!-- Restaurant details will be populated dynamically -->
+            </div>
+            
+            <div class="menu-section" id="menu-section">
+                <h3>Menu Highlights</h3>
+                <div class="menu-items" id="menu-items">
+                    <!-- Menu items will be populated dynamically -->
+                </div>
+            </div>
+            
+            <div class="reviews-section">
+                <h3>Customer Reviews</h3>
+                <div class="reviews-list" id="reviews-list">
+                    <!-- Reviews will be populated dynamically -->
+                </div>
+            </div>
+            
+            <div class="reservation-section">
+                <h3>Make a Reservation</h3>
+                <form id="reservation-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="reservation-date">Date</label>
+                            <input type="date" id="reservation-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reservation-time">Time</label>
+                            <input type="time" id="reservation-time" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="reservation-party">Party Size</label>
+                            <select id="reservation-party" required>
+                                <option value="1">1 Person</option>
+                                <option value="2" selected>2 People</option>
+                                <option value="3">3 People</option>
+                                <option value="4">4 People</option>
+                                <option value="5">5 People</option>
+                                <option value="6">6 People</option>
+                                <option value="7">7 People</option>
+                                <option value="8">8 People</option>
+                                <option value="9">9 People</option>
+                                <option value="10">10 People</option>
+                                <option value="11">11 People</option>
+                                <option value="12">12 People</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="reservation-occasion">Occasion (Optional)</label>
+                            <select id="reservation-occasion">
+                                <option value="">Select an Occasion</option>
+                                <option value="birthday">Birthday</option>
+                                <option value="anniversary">Anniversary</option>
+                                <option value="date">Date Night</option>
+                                <option value="business">Business Meal</option>
+                                <option value="celebration">Celebration</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="special-requests">Special Requests (Optional)</label>
+                            <textarea id="special-requests" rows="3" placeholder="Any special requests or dietary requirements?"></textarea>
+                        </div>
+                    </div>
+                    
+                    <button type="button" id="check-availability" class="btn-primary">Check Availability</button>
+                </form>
+            </div>
+            
+            <div class="time-slots" id="time-slots">
+                <h3>Available Time Slots</h3>
+                <div class="time-slots-list" id="time-slots-list">
+                    <!-- Time slots will be populated dynamically -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="booking-section" id="booking-section">
+        <div class="container">
+            <div class="booking-header">
+                <h2>Complete Your Reservation</h2>
+                <button class="btn-secondary" id="back-to-restaurant">Back to Restaurant</button>
+            </div>
+            
+            <div class="booking-details" id="booking-details">
+                <!-- Selected restaurant and reservation details will be populated dynamically -->
+            </div>
+            
+            <div class="guest-info">
+                <h3>Guest Information</h3>
+                <form id="guest-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="first-name">First Name</label>
+                            <input type="text" id="first-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name">Last Name</label>
+                            <input type="text" id="last-name" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" required>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="payment-info">
+                <h3>Payment Information</h3>
+                <p class="payment-note">Note: A credit card is required to secure your reservation. You will not be charged unless you fail to show up or cancel within the restaurant's cancellation policy period.</p>
+                <form id="payment-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="card-name">Name on Card</label>
+                            <input type="text" id="card-name" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="card-number">Card Number</label>
+                            <input type="text" id="card-number" placeholder="XXXX XXXX XXXX XXXX" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="expiry-date">Expiry Date</label>
+                            <input type="text" id="expiry-date" placeholder="MM/YY" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" placeholder="XXX" required>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="booking-summary">
+                <h3>Reservation Summary</h3>
+                <div id="booking-summary-details">
+                    <!-- Booking summary will be populated dynamically -->
+                </div>
+                <div class="cancellation-policy">
+                    <h4>Cancellation Policy</h4>
+                    <p>You may cancel your reservation up to 4 hours before your scheduled time without penalty. Late cancellations or no-shows may result in a fee of $25 per person.</p>
+                </div>
+                <div class="terms">
+                    <label>
+                        <input type="checkbox" id="terms-checkbox" required>
+                        I agree to the cancellation policy and terms of service
+                    </label>
+                </div>
+                <button id="confirm-booking" class="btn-primary">Confirm Reservation</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="confirmation-section" id="confirmation-section">
+        <div class="container">
+            <div class="confirmation-message">
+                <i class="fas fa-check-circle"></i>
+                <h2>Reservation Confirmed!</h2>
+                <p>Your restaurant reservation has been successfully confirmed. A confirmation email has been sent to your email address.</p>
+                <div class="booking-reference">
+                    <h3>Reservation Reference</h3>
+                    <p id="booking-reference">ABC123</p>
+                </div>
+                <div class="confirmation-details" id="confirmation-details">
+                    <!-- Confirmation details will be populated dynamically -->
+                </div>
+                <button class="btn-primary" id="back-to-home">Back to Home</button>
+            </div>
+        </div>
+    </section>
+ 
+
+    <hr>
+<div class="footer">
+    <p>&copy; 2025 BeyondBorders . All Rights Reserved.</p>
+</div>
+   
+    <script src="restaurants-script.js"></script>
+</body>
+</html>
